@@ -17,7 +17,7 @@ class InitData {
                 textDirection: TextDirection.rtl,
                 style: TextStyle(
                   fontFamily: 'Kufi',
-                  fontSize: 18,
+                  fontSize: MediaQuery.of(context).size.height * 0.023,
                 )),
             contentPadding: EdgeInsets.fromLTRB(20, 5, 0, 5),
             onTap: () {
@@ -32,7 +32,7 @@ class InitData {
             title: Text(' -  الثانية إبتدائي   ',
                 textDirection: TextDirection.rtl,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: MediaQuery.of(context).size.height * 0.023,
                   fontFamily: 'Kufi',
                 )),
             contentPadding: EdgeInsets.fromLTRB(20, 5, 0, 5),
@@ -48,7 +48,7 @@ class InitData {
             title: Text(' -  الثالثة إبتدائي   ',
                 textDirection: TextDirection.rtl,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: MediaQuery.of(context).size.height * 0.023,
                   fontFamily: 'Kufi',
                 )),
             contentPadding: EdgeInsets.fromLTRB(20, 5, 0, 5),
@@ -64,7 +64,7 @@ class InitData {
             title: Text(' -  الرابعة إبتدائي   ',
                 textDirection: TextDirection.rtl,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: MediaQuery.of(context).size.height * 0.023,
                   fontFamily: 'Kufi',
                 )),
             contentPadding: EdgeInsets.fromLTRB(20, 5, 0, 5),
@@ -80,7 +80,7 @@ class InitData {
             title: Text(' -  الخامسة إبتدائي   ',
                 textDirection: TextDirection.rtl,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: MediaQuery.of(context).size.height * 0.023,
                   fontFamily: 'Kufi',
                 )),
             contentPadding: EdgeInsets.fromLTRB(20, 5, 0, 5),

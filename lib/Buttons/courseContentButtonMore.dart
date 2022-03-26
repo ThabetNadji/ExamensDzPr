@@ -19,17 +19,14 @@ class CourseContentButtonMore extends StatelessWidget {
       print(e);
     }
 
-    return Container(
-      margin: EdgeInsets.all(8),
-      child:
-          // ignore: deprecated_member_use
-          RaisedButton(
+    return Column(children: [
+      RaisedButton(
         onPressed: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (BuildContext context) => viewpdf));
         },
         shape: RoundedRectangleBorder(
-            side: BorderSide(color: Colors.green, width: 1)),
+            side: BorderSide(color: Color(0xFF233329), width: 1)),
         padding: EdgeInsets.all(1.0),
         child: Ink(
           decoration: BoxDecoration(
@@ -43,19 +40,27 @@ class CourseContentButtonMore extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(00.0)),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 170.0, minHeight: 30.0),
+            width: MediaQuery.of(context).size.height * 0.25,
+            height: MediaQuery.of(context).size.height * 0.08,
             alignment: Alignment.center,
             child: Text(
               link,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Kufi',
-                fontSize: 10,
+                fontSize: MediaQuery.of(context).size.height * 0.015,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
         ),
       ),
-    );
+      SizedBox(
+        height: 15,
+      ),
+    ]
+        // ignore: deprecated_member_use
+
+        );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myEduApp/main/devicesType.dart';
 import 'package:myEduApp/main/theme.dart';
 import 'package:provider/provider.dart';
 import '../Buttons/customButton.dart';
@@ -14,6 +15,8 @@ class listCourses5 extends StatefulWidget {
 class _ListCoursesPrimerState extends State<listCourses5> {
   @override
   Widget build(BuildContext context) {
+    devicesType _devicesType = new devicesType();
+    String devType = _devicesType.getDeviceType();
     return Consumer<ThemeProvider>(builder: (context, value, child) {
       return MaterialApp(
         theme: value.getTheme(),
@@ -78,16 +81,25 @@ class _ListCoursesPrimerState extends State<listCourses5> {
             children: <Widget>[
               SizedBox(
                 //Use of SizedBox
-                height: 40,
+                height: 10,
               ),
-              Text(
-                'شهادة التعليم الإبتدائي',
-                style: new TextStyle(
-                    fontFamily: 'Kufi',
-                    fontSize: 20.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
+              devType == 'isPhone'
+                  ? Text(
+                      'شهادة التعليم الإبتدائي',
+                      style: new TextStyle(
+                          fontFamily: 'Kufi',
+                          fontSize: MediaQuery.of(context).size.width * 0.057,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    )
+                  : Text(
+                      'شهادة التعليم الإبتدائي',
+                      style: new TextStyle(
+                          fontFamily: 'Kufi',
+                          fontSize: MediaQuery.of(context).size.width * 0.03,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
               SizedBox(
                 height: 35, //Use of SizedBox
               ),
@@ -99,12 +111,26 @@ class _ListCoursesPrimerState extends State<listCourses5> {
                       .center, //Center Row contents vertically,
                   children: [
                     new DropdownButton<String>(
-                      hint: Text(
-                        'إختر السنة التي تريد عرض مواضيعها',
-                        style: TextStyle(
-                            color: Colors.orange,
-                            fontSize: 15,
-                            fontFamily: 'Kufi'),
+                      hint: Center(
+                        child: devType == 'isPhone'
+                            ? Text(
+                                'إختر السنة التي تريد عرض مواضيعها',
+                                style: TextStyle(
+                                    color: Colors.orange,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                            0.037, //15
+                                    fontFamily: 'Kufi'),
+                              )
+                            : Text(
+                                'إختر السنة التي تريد عرض مواضيعها',
+                                style: TextStyle(
+                                    color: Colors.orange,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                            0.01, //15
+                                    fontFamily: 'Kufi'),
+                              ),
                       ),
                       onChanged: (String newVal) {
                         setState(() {
@@ -145,19 +171,29 @@ class _ListCoursesPrimerState extends State<listCourses5> {
                 ),
               ),
               SizedBox(
-                height: 25, //Use of SizedBox
+                height: 5, //Use of SizedBox
               ),
               widget.yearX == ''
                   ? Text('')
-                  : Text(
-                      'مواضيع شهادة التعليم الإبتدائي لسنة',
-                      style: TextStyle(
-                          color: Colors.green,
-                          fontSize: 13,
-                          fontFamily: 'Kufi',
-                          fontWeight: FontWeight.bold),
-                    ),
-              Text(widget.yearX),
+                  : devType == 'isPhone'
+                      ? Text(
+                          widget.yearX + 'مواضيع شهادة التعليم الإبتدائي لسنة',
+                          style: TextStyle(
+                              color: Colors.green,
+                              fontSize: MediaQuery.of(context).size.width *
+                                  0.037, //13
+                              fontFamily: 'Kufi',
+                              fontWeight: FontWeight.bold),
+                        )
+                      : Text(
+                          widget.yearX + 'مواضيع شهادة التعليم الإبتدائي لسنة',
+                          style: TextStyle(
+                              color: Colors.green,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.02, //13
+                              fontFamily: 'Kufi',
+                              fontWeight: FontWeight.bold),
+                        ),
               SizedBox(
                 height: 25, //Use of SizedBox
               ),

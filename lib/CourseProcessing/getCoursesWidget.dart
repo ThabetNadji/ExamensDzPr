@@ -1,4 +1,5 @@
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myEduApp/Buttons/courseContentButton.dart';
 import 'package:myEduApp/Buttons/courseContentButtonMore.dart';
@@ -50,7 +51,8 @@ class GetCoursesWidget {
               SizedBox(
                 height: 100,
               ),
-              CircularProgressIndicator(),
+              //CircularProgressIndicator(),
+              CupertinoActivityIndicator(),
               SizedBox(
                 height: 40,
               ),
