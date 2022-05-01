@@ -69,7 +69,11 @@ class _cardHomeWidgetState extends State<cardHomeWidgetDark> {
               alignment: Alignment.bottomRight,
               child: Container(
                 // ignore: deprecated_member_use
-                child: RaisedButton(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(255, 22, 133, 66),
+                    onPrimary: const Color(0xFF63d471),
+                  ),
                   onPressed: () {
                     branch br = new branch(get_year(), get_level());
                     Navigator.push(
@@ -77,20 +81,7 @@ class _cardHomeWidgetState extends State<cardHomeWidgetDark> {
                         MaterialPageRoute(
                             builder: (BuildContext context) => br));
                   },
-                  shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.green, width: 1)),
-                  padding: EdgeInsets.all(1.0),
                   child: Ink(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            const Color(0xFF233329),
-                            const Color(0xFF63d471),
-                          ],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                        ),
-                        borderRadius: BorderRadius.circular(00.0)),
                     child: Container(
                       constraints: BoxConstraints(
                           maxWidth: 100.0, minHeight: 35.0), // button size
@@ -101,6 +92,7 @@ class _cardHomeWidgetState extends State<cardHomeWidgetDark> {
                             WidgetSpan(
                               child: Icon(
                                 Icons.arrow_back_ios_sharp,
+                                color: Colors.white,
                                 size: MediaQuery.of(context).size.height * 0.03,
                               ),
                             ),

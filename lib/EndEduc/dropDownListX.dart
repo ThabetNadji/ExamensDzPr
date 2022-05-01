@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myEduApp/EndEduc/showCoursesBac.dart';
 
 class dropDownListX extends StatefulWidget {
   String level, year;
@@ -10,8 +9,6 @@ class dropDownListX extends StatefulWidget {
 }
 
 class _dropDownListXState extends State<dropDownListX> {
-  showCoursesBac sc;
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -71,30 +68,27 @@ class _dropDownListXState extends State<dropDownListX> {
           SizedBox(
             height: 35, //Use of SizedBox
           ),
-          widget.speciality != '' && widget.yearX != ''
-              ? sc = new showCoursesBac(
-                  widget.year, widget.level, widget.speciality, widget.yearX)
-              : widget.speciality == ''
+          widget.speciality == ''
+              ? Center(
+                  child: Text(
+                    widget.yearX + '   ',
+                    style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 16,
+                        fontFamily: 'Kufi',
+                        fontWeight: FontWeight.bold),
+                  ),
+                )
+              : widget.yearX == ''
                   ? Center(
-                      child: Text(
-                        widget.yearX + '   ',
-                        style: TextStyle(
-                            color: Colors.green,
-                            fontSize: 16,
-                            fontFamily: 'Kufi',
-                            fontWeight: FontWeight.bold),
-                      ),
+                      child: Text(widget.speciality + '                  ',
+                          style: TextStyle(
+                              color: Colors.green,
+                              fontSize: 16,
+                              fontFamily: 'Kufi',
+                              fontWeight: FontWeight.bold)),
                     )
-                  : widget.yearX == ''
-                      ? Center(
-                          child: Text(widget.speciality + '                  ',
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontSize: 16,
-                                  fontFamily: 'Kufi',
-                                  fontWeight: FontWeight.bold)),
-                        )
-                      : Text(''),
+                  : Text(''),
         ],
       ),
     );

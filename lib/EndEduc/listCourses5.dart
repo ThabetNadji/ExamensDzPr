@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:myEduApp/main/devicesType.dart';
 import 'package:myEduApp/main/theme.dart';
 import 'package:provider/provider.dart';
 import '../Buttons/customButton.dart';
+import '../ad_helper/ad_helper.dart';
 
 class listCourses5 extends StatefulWidget {
   final String years, level;
@@ -14,7 +16,16 @@ class listCourses5 extends StatefulWidget {
 
 class _ListCoursesPrimerState extends State<listCourses5> {
   @override
+  void initState() {
+    //super.initState();
+    AdHelper.disposeAd();
+    AdHelper.myBanner.load();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    AdWidget adWidget = AdWidget(ad: AdHelper.myBanner);
     devicesType _devicesType = new devicesType();
     String devType = _devicesType.getDeviceType();
     return Consumer<ThemeProvider>(builder: (context, value, child) {
@@ -76,6 +87,11 @@ class _ListCoursesPrimerState extends State<listCourses5> {
                           BorderRadius.circular(0), //border corner radius
                     ),
             ),
+          ),
+          bottomNavigationBar: Container(
+            height: 50,
+            color: Colors.black38,
+            child: adWidget,
           ),
           body: Column(
             children: <Widget>[

@@ -15,7 +15,7 @@ class courseContentButtonOffLign extends StatelessWidget {
 
     return SizedBox.fromSize(
       size: Size(75, 50), // button width and height
-      child: FlatButton(
+      child: TextButton(
         onPressed: () {
           Navigator.push(
               context,
@@ -23,41 +23,28 @@ class courseContentButtonOffLign extends StatelessWidget {
                   builder: (BuildContext context) => PdfViewOffLign(
                       path: path, fileName: fileName, tri: tri)));
         },
-        color: Colors.orange,
-        padding: EdgeInsets.all(1.0),
+        // color: Colors.orange,
+        //padding: EdgeInsets.all(1.0),
         child: Column(
           // Replace with a Row for horizontal icon + text
-          children: <Widget>[Icon(Icons.arrow_forward), Text("تصفح")],
+          children: <Widget>[
+            Icon(
+              Icons.arrow_forward,
+              size: MediaQuery.of(context).size.width * 0.032,
+              color: Colors.orange,
+            ),
+            Text(
+              "تصفح",
+              style: TextStyle(
+                fontFamily: 'Kufi',
+                fontWeight: FontWeight.bold,
+                color: Colors.orange,
+                fontSize: MediaQuery.of(context).size.height * 0.015,
+              ),
+            )
+          ],
         ),
       ),
     );
   }
 }
-
-/*
-return btnOffLign = new courseContentButtonOffLign(
-                          dirX + '/' + files[index].path.split('/').last,
-                          files[index].path.split('/').last,
-                          widget.tri,
-                          files[index].path.split('/').last)
- */
-/*
-FlatButton(
-                onPressed: () => {},
-                color: Colors.orange,
-                padding: EdgeInsets.all(10.0),
-                child: Column( // Replace with a Row for horizontal icon + text
-                  children: <Widget>[
-                    Icon(Icons.add),
-                    Text("Add")
-                  ],
-                ),
-              ),
- */
-
-/*onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => PdfView(path: path)));
-      }, */

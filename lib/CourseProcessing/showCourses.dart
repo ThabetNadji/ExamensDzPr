@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:myEduApp/ad_helper/ad_helper.dart';
 import 'package:myEduApp/main/NetworkCheck.dart';
 import 'package:myEduApp/main/devicesType.dart';
 import 'package:myEduApp/main/theme.dart';
@@ -24,6 +26,9 @@ class _ShowCoursesState extends State<ShowCourses>
   @override
   void initState() {
     _tabController = TabController(length: 4, vsync: this);
+    //super.initState();
+    AdHelper.disposeAd();
+    AdHelper.myBanner.load();
     super.initState();
   }
 
@@ -36,9 +41,9 @@ class _ShowCoursesState extends State<ShowCourses>
           int selectedRadio;
 
           if (myViewModel.getThemeView() == false) {
-            selectedRadio = 1; // the theme is light
+            selectedRadio = 1; //  theme is light
           } else {
-            selectedRadio = 2; // the theme is dark
+            selectedRadio = 2; //  theme is dark
           }
 
           return AlertDialog(
@@ -142,8 +147,8 @@ class _ShowCoursesState extends State<ShowCourses>
 
   @override
   Widget build(BuildContext context) {
+    AdWidget adWidget = AdWidget(ad: AdHelper.myBanner);
     NetworkCheck networkChecker = new NetworkCheck();
-
     devicesType _devicesType = new devicesType();
     String devType = _devicesType.getDeviceType();
     return Consumer<ThemeProvider>(builder: (context, value, child) {
@@ -259,6 +264,11 @@ class _ShowCoursesState extends State<ShowCourses>
                 controller: _tabController,
               ),
               bottomOpacity: 1,
+            ),
+            bottomNavigationBar: Container(
+              height: 50,
+              color: Colors.black38,
+              child: adWidget,
             ),
             body: TabBarView(
               children: <Widget>[

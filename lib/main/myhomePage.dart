@@ -1,15 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:myEduApp/main/theme.dart';
 import 'package:provider/provider.dart';
 import '../SideDrawer/sideDrawer.dart';
+import '../ad_helper/ad_helper.dart';
 import 'cardHomeWidget.dart';
 import 'cardHomeWidgetDark.dart';
 import 'package:intl/intl.dart';
 import 'dart:ui' as ui;
 
-class MyHomePage extends StatelessWidget {
-  int estimateTs = DateTime(2022, 06, 02, 00, 00, 00)
-      .millisecondsSinceEpoch; // set needed date
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int estimateTs = DateTime(2022, 06, 02, 00, 00, 00).millisecondsSinceEpoch;
+  // set needed date
+
+  // set ads
+  @override
+  void initState() {
+    // TODO: implement initState
+    //AdHelper.disposeAd();
+    AdHelper.myBanner.load();
+    super.initState();
+  }
+
+  AdWidget adWidget = AdWidget(ad: AdHelper.myBanner);
+  // and set ads
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(builder: (context, value, child) {
@@ -28,27 +48,7 @@ class MyHomePage extends StatelessWidget {
                   fontFamily: 'Kufi',
                 ),
               ),
-              actions: <Widget>[
-                // theme swicher button
-                //value.getTheme() == ThemeData.light().copyWith()
-                /* ? IconButton(
-                        icon:
-                            Icon(Icons.toggle_off_rounded), //toggle_on_outlined
-                        color: Colors.black,
-                        onPressed: () {
-                          Provider.of<ThemeProvider>(context, listen: false)
-                              .swapTheme();
-                        },
-                      )
-                    : IconButton(
-                        icon: Icon(Icons.toggle_on_outlined),
-                        color: Colors.white,
-                        onPressed: () {
-                          Provider.of<ThemeProvider>(context, listen: false)
-                              .swapTheme();
-                        },
-                      ), */
-              ],
+              actions: <Widget>[],
               flexibleSpace: Container(
                 decoration: value.getTheme() == ThemeData.light().copyWith()
                     ? BoxDecoration(
@@ -87,18 +87,25 @@ class MyHomePage extends StatelessWidget {
                       ),
               ),
             ),
-            body: SingleChildScrollView(
-              child: Stack(
-                children: [
-                  Center(
+            bottomNavigationBar: Container(
+              height: 50,
+              color: Colors.black38,
+              child: adWidget,
+            ),
+            body: Column(
+              children: [
+                Expanded(
+                  child: Center(
                     child: Column(
                       children: <Widget>[
                         SizedBox(
                           height: 30, //Use of SizedBox
                         ),
                         Container(
-                          width: 400,
-                          height: 673,
+                          width:
+                              MediaQuery.of(context).size.width * 0.95, // 400
+                          height:
+                              MediaQuery.of(context).size.height * 0.5, //673
                           child: Column(
                             children: <Widget>[
                               Container(
@@ -144,19 +151,6 @@ class MyHomePage extends StatelessWidget {
                                               children: [
                                                 Column(
                                                   children: [
-                                                    Text(
-                                                        ' 2022 الـوقـت المـتـبـقـي لــشـهــادة التعـــليم الإبـــتدائـــي  ',
-                                                        style: new TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 10.0,
-                                                          //color: Colors.orange,
-                                                          fontFamily: 'Kufi',
-                                                        ))
-                                                  ],
-                                                ),
-                                                Column(
-                                                  children: [
                                                     //remaining
 
                                                     Row(
@@ -166,54 +160,7 @@ class MyHomePage extends StatelessWidget {
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .center, //Center Row contents vertically,
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            Text('  يـــــوم  ',
-                                                                style:
-                                                                    new TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontSize:
-                                                                      10.0,
-                                                                  //color: Colors.orange,
-                                                                  fontFamily:
-                                                                      'Kufi',
-                                                                ))
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center, //Center Row contents horizontally,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center, //Center Row contents vertically,
-                                                          children: [
-                                                            Text(
-                                                                '- الوقت بالأيام :     ' +
-                                                                    '             ' +
-                                                                    day
-                                                                        .toInt()
-                                                                        .toString(),
-                                                                textDirection: ui
-                                                                    .TextDirection
-                                                                    .rtl,
-                                                                style:
-                                                                    new TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontSize:
-                                                                      10.0,
-                                                                  //color: Colors.orange,
-                                                                  fontFamily:
-                                                                      'Kufi',
-                                                                ))
-                                                          ],
-                                                        ),
-                                                      ],
+                                                      children: [],
                                                     ),
                                                     Row(
                                                       mainAxisAlignment:
@@ -223,42 +170,31 @@ class MyHomePage extends StatelessWidget {
                                                           CrossAxisAlignment
                                                               .center, //Center Row contents vertically,
                                                       children: [
-                                                        Row(
-                                                          children: [
-                                                            Text('ســــــاعــة',
-                                                                style:
-                                                                    new TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontSize:
-                                                                      10.0,
-                                                                  //color: Colors.orange,
-                                                                  fontFamily:
-                                                                      'Kufi',
-                                                                ))
-                                                          ],
+                                                        SizedBox(
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              0.035,
                                                         ),
-                                                        Row(
-                                                          children: [
-                                                            Text(
-                                                                '- الوقت بالساعات :    ' +
-                                                                    dateString,
-                                                                textDirection: ui
-                                                                    .TextDirection
-                                                                    .rtl,
-                                                                style:
-                                                                    new TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontSize:
-                                                                      10.0,
-                                                                  //color: Colors.orange,
-                                                                  fontFamily:
-                                                                      'Kufi',
-                                                                ))
-                                                          ],
+                                                        Text(
+                                                            'من جد وجد و من سار على الدرب وصل',
+                                                            style:
+                                                                new TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 10.0,
+                                                              //color: Colors.orange,
+                                                              fontFamily:
+                                                                  'Kufi',
+                                                            )),
+                                                        SizedBox(
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              0.035,
                                                         ),
                                                       ],
                                                     ),
@@ -270,7 +206,14 @@ class MyHomePage extends StatelessWidget {
                                                           fontSize: 10.0,
                                                           //color: Colors.orange,
                                                           fontFamily: 'Kufi',
-                                                        ))
+                                                        )),
+                                                    SizedBox(
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.020,
+                                                    ),
                                                   ],
                                                 )
                                               ],
@@ -296,17 +239,14 @@ class MyHomePage extends StatelessWidget {
                                       '5 eme',
                                       'CinqEme',
                                       ''),
-                              SizedBox(
-                                height: 75, //Use of SizedBox
-                              ),
                             ],
                           ),
                         ),
                       ],
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+              ],
             ),
           ));
     });

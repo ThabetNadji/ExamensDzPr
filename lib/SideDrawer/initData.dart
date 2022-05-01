@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myEduApp/highSchool/showCoursesHighSchoole.dart';
 import './entry.dart';
 import '../PrimerAndSecondray/listCoursesPrimer.dart';
 

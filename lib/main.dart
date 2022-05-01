@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'main/MyViewModel.dart';
 import 'main/myhomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,6 +11,10 @@ import 'package:provider/provider.dart';
 import 'main/theme.dart';
 
 Future<void> main() async {
+  // google ads
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   SharedPreferences.getInstance().then((prefs) {
@@ -24,7 +29,7 @@ Future<void> main() async {
         ),
       ],
       child: MyEduApp(),
-    )); 
+    ));
   });
 }
 
@@ -36,7 +41,7 @@ class MyEduApp extends StatefulWidget {
 class _MyEduAppState extends State<MyEduApp> {
   @override
   Widget build(BuildContext context) {
-    Widget testWidget = new MediaQuery(
+    Widget mainWidget = new MediaQuery(
         data: new MediaQueryData(),
         child: Consumer<ThemeProvider>(
           builder: (context, value, child) {
@@ -53,6 +58,6 @@ class _MyEduAppState extends State<MyEduApp> {
             );
           },
         ));
-    return testWidget;
+    return mainWidget;
   }
 }
