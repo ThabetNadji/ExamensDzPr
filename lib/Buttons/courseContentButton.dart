@@ -10,17 +10,11 @@ class CourseContentButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String b;
-    String c;
-    String d;
-    String e;
-    String f;
+    String b, c, d, e, f;
     bool withCorrection = false;
     String annee;
     String link;
     try {
-      print('------------____________---------years');
-      print(years);
       if (yearX != '') {
         link = titleBtn.split("/")[3]; // and 5 and 6
         link = link.substring(0, link.indexOf('.pdf'));
@@ -39,8 +33,6 @@ class CourseContentButton extends StatelessWidget {
           annee = b + c + d + e;
         }
       }
-      //link = titleBtn.split("/")[5]; // and 5 and 6
-
     } catch (e) {
       print(e);
     }
@@ -48,7 +40,8 @@ class CourseContentButton extends StatelessWidget {
       children: [
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: Color.fromARGB(255, 22, 133, 66),
+            //primary: Color.fromARGB(255, 22, 133, 66),
+            primary: Colors.green[900],
             onPrimary: const Color(0xFF63d471),
           ),
           onPressed: () {
@@ -58,8 +51,6 @@ class CourseContentButton extends StatelessWidget {
           child: Ink(
             child: Container(
               width: MediaQuery.of(context).size.height * 0.25,
-              // height: MediaQuery.of(context).size.height * 0.08,
-              //constraints: BoxConstraints(maxWidth: 170.0, minHeight: 60.0),
               alignment: Alignment.center,
               child: (yearX == '' && fullPath != '' && years == '5')
                   ? Column(
@@ -107,7 +98,7 @@ class CourseContentButton extends StatelessWidget {
                               TextSpan(
                                   text: ' ا ',
                                   style: TextStyle(
-                                      color: Color.fromARGB(255, 22, 133, 66),
+                                      color: Colors.green[900],
                                       fontSize:
                                           MediaQuery.of(context).size.height *
                                               0.01,

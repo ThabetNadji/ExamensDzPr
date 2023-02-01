@@ -34,19 +34,10 @@ class _cardHomeWidgetState extends State<cardHomeWidgetDark> {
             ),
             //fit: BoxFit.none,
           ),
-          gradient: LinearGradient(
-            colors: [
-              //	52, 67, 90
-              Color(0x0028313B), //485461 2C3E50
-              Color(0x002C3E50) //0x001A1A1B
-              //add more colors for gradient
-            ],
-            begin: Alignment.topCenter, //begin of the gradient color
-            end: Alignment.bottomCenter, //end of the gradient color
-            //stops for individual color
-            //set the stops number equal to numbers of color
-          ),
-          borderRadius: BorderRadius.circular(00), //border corner radius
+          color: Colors.black87,
+          //color: Color.fromARGB(199, 0, 0, 0),
+          border: Border.all(width: 2, color: Color.fromARGB(179, 37, 37, 37)),
+          borderRadius: BorderRadius.circular(7),
         ),
         child: Column(
           children: <Widget>[
@@ -55,13 +46,18 @@ class _cardHomeWidgetState extends State<cardHomeWidgetDark> {
               child: Container(
                 // color: Colors.white,
                 // ignore: deprecated_member_use
-                child: Text(widget.textDetail,
-                    textDirection: TextDirection.rtl,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: MediaQuery.of(context).size.height * 0.02,
-                        fontFamily: 'Kufi',
-                        fontWeight: FontWeight.bold)),
+                child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 7.0,
+                      right: 7.0,
+                    ),
+                    child: Text(widget.textDetail,
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: MediaQuery.of(context).size.height * 0.02,
+                            fontFamily: 'Kufi',
+                            fontWeight: FontWeight.bold))),
               ),
             ),
             Spacer(),

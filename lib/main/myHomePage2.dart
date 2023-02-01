@@ -65,8 +65,25 @@ class _myHomePage2State extends State<myHomePage2> {
                                     }
                                     //print(dateString);
                                     return Container(
-                                      color:
-                                          Colors.greenAccent.withOpacity(0.3),
+                                      decoration: new BoxDecoration(
+                                        borderRadius: new BorderRadius.all(
+                                            new Radius.circular(10.0)),
+                                        image: DecorationImage(
+                                          image:
+                                              AssetImage("assets/images/4.png"),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.orange,
+
+                                            spreadRadius: 0,
+                                            blurRadius: 0,
+                                            offset: Offset(0,
+                                                0), // changes position of shadow
+                                          ),
+                                        ],
+                                      ),
                                       alignment: Alignment.center,
                                       child: Column(
                                         children: [
@@ -101,8 +118,12 @@ class _myHomePage2State extends State<myHomePage2> {
                                                       style: new TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold,
-                                                        fontSize: 10.0,
-                                                        //color: Colors.orange,
+                                                        fontSize: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width /
+                                                            25,
+                                                        //color: Colors.green,
                                                         fontFamily: 'Kufi',
                                                       )),
                                                   SizedBox(
@@ -118,8 +139,12 @@ class _myHomePage2State extends State<myHomePage2> {
                                                   'بالتـــوفـيق لكــل مجـتهــد ',
                                                   style: new TextStyle(
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 10.0,
-                                                    //color: Colors.orange,
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            25,
+                                                    // color: Colors.green,
                                                     fontFamily: 'Kufi',
                                                   )),
                                               SizedBox(
@@ -142,7 +167,7 @@ class _myHomePage2State extends State<myHomePage2> {
                         ),
                         cardHomeWidgetDark(
                             'assets/images/educ_5_re.png',
-                            'مواضيع شهادة التعليم الإبتدائى للسنوات الماضيه مع الحل ',
+                            'مواضيع شهادة التعليم الإبتدائى لسٌنوات الماضيه مع التصحيح النموذجي ',
                             '5 eme',
                             'CinqEme',
                             ''),

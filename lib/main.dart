@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'ad_helper/AppOpenAdManager.dart';
 import 'main/MyViewModel.dart';
 import 'main/myhomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,11 +18,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   SharedPreferences.getInstance().then((prefs) {
-    var isDarkTheme = prefs.getBool("darkTheme") ?? true;
+    // var isDarkTheme = prefs.getBool("darkTheme") ?? true;
     return runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider<ThemeProvider>(
-          create: (BuildContext context) => ThemeProvider(isDarkTheme),
+          create: (BuildContext context) => ThemeProvider(true),
         ),
         ChangeNotifierProvider<MyViewModel>(
           create: (BuildContext context) => MyViewModel(),
@@ -39,41 +38,8 @@ class MyEduApp extends StatefulWidget {
   _MyEduAppState createState() => _MyEduAppState();
 }
 
-class _MyEduAppState extends State<MyEduApp> with WidgetsBindingObserver {
-  //  <------- begin
-
-  AppOpenAdManager appOpenAdManager = AppOpenAdManager();
-  bool isPaused = false;
-
-  @override
-  void initState() {
-    super.initState();
-    appOpenAdManager.loadAd();
-    appOpenAdManager.showAdIfAvailable();
-    WidgetsBinding.instance.addObserver(this);
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    WidgetsBinding.instance.removeObserver(this);
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    // TODO: implement didChangeAppLifecycleState
-    super.didChangeAppLifecycleState(state);
-    if (state == AppLifecycleState.paused) {
-      isPaused = true;
-    }
-    if (state == AppLifecycleState.resumed && isPaused) {
-      print("Resumed==========================");
-      appOpenAdManager.showAdIfAvailable();
-      isPaused = false;
-    }
-  } //  <------- end app open ads
-
+class _MyEduAppState extends State<MyEduApp> {
+  // app openAds ...
   @override
   Widget build(BuildContext context) {
     Widget mainWidget = new MediaQuery(
@@ -81,10 +47,10 @@ class _MyEduAppState extends State<MyEduApp> with WidgetsBindingObserver {
         child: Consumer<ThemeProvider>(
           builder: (context, value, child) {
             return new MaterialApp(
-              theme: value.getTheme(),
+              theme: value.darkTheme,
               home: CustomSplash(
                 imagePath: "assets/images/myNewLogo5.png",
-                backGroundColor: Color(0xFF323232),
+                backGroundColor: Color.fromARGB(255, 0, 0, 0),
                 animationEffect: 'zoom-in',
                 home: MyHomePage(),
                 duration: 2500,
